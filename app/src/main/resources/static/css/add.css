@@ -1,0 +1,101 @@
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+.footer button {
+    background-color: #28a745;
+    border: none;
+    color: white;
+    font-size: 16px;
+    padding: 15px 5% 15px 5%;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.footer button:hover {
+    background-color: #1d7531;
+}
+
+.form-container {
+    margin: 20px auto;
+    max-width: 400px;
+    background-color: #e0f7ff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-group input:focus, .form-group select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.submit-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+body {
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    width: 66%;
+    margin: auto;
+  }
+
+  @keyframes gradient-animation {
+    0% { background-position: 0 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0 50%; }
+}
+
+  html {
+    height: 120%;
+    width: 100%;
+    background: linear-gradient(149deg, rgba(24,187,156,1) 0%, rgba(106,57,175,1) 42%, rgba(187,24,148,1) 72%, rgba(115,53,134,1) 100%);
+    background-size: 300% 300%;
+    animation: gradient-animation 10s ease infinite;
+  }
+  
+  

@@ -1,0 +1,105 @@
+
+        .wrapper {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .header button {
+            background-color: #28a745;
+            border: none;
+            color: white;
+            font-size: 16px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            justify-content: center;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        .card {
+            background-color: #f7e0ff;
+            border: 2px solid #d0e9f2;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card a {
+            text-decoration: none;
+            color: #e600ff;
+            font-weight: bold;
+        }
+
+body {
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    width: 66%;
+    margin: auto;
+  }
+
+  @keyframes gradient-animation {
+    0% { background-position: 0 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0 50%; }
+}
+
+  html {
+    height: 120%;
+    width: 100%;
+    background: linear-gradient(149deg, rgba(24,187,156,1) 0%, rgba(106,57,175,1) 42%, rgba(187,24,148,1) 72%, rgba(115,53,134,1) 100%);
+    background-size: 300% 300%;
+    animation: gradient-animation 10s ease infinite;
+  }
+  
+  .form_header {
+    background-color: #b71010;
+    padding-left: 7%;
+    margin-top: 40px;
+    padding-top: 10px;
+    color: #ffffff;
+    height: 100px;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+  
+  .form_body {
+    width: 80%;
+    margin: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    z-index: 2;
+    transform: scale(1.15);
+    background: rgba(255, 255, 255, 0.9);
+  }
+  
+  .foot {
+    line-height: 150%;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #b71010;
+    height: 100px;
+    padding-top: 20px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <link rel="stylesheet" href="css\ind.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+    <section class="form">
+
+        <div class="form_header">
+            <h2>HOSPITAL</h2>
+        </div>
+        
+        <div class="form_body">
+            <div class="wrapper">
+                <div class="container">
+                    <h1>Welcome to the homepage</h1>
+                    <div class="grid">
+                        <div class="card">
+                            <a href="/addDoctor">ADD DOCTOR</a>
+                        </div>
+                        <div class="card">
+                            <a href="/addHospital">ADD HOSPITAL</a>
+                        </div>
+                        <div class="card">
+                            <a href="/deleteDoctors">DELETE DOCTOR</a>
+                        </div>
+                        <div class="card">
+                            <a href="/deleteHospitals">DELETE HOSPITAL</a>
+                        </div>
+                        <div class="card" style="grid-column: span 2;">
+                            <a href="/showDoctors">SHOW DOCTORS</a>
+                            <p th:text ="'Amount: ' + ${amount} "/>
+                        </div>
+                        <div class="card" style="grid-column: span 2;">
+                            <a href="/showDoctors">SHOW DOCTORS BY HOSPITAL</a>
+                            <p th:text ="'Amount: ' + ${amount} "/>
+                        </div>
+                        <div class="card" style="grid-column: span 2;">
+                            <a href="/showHospital">SHOW HOSPITALS</a>
+                            <p th:text ="'Amount: ' + ${amount} "/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+        <div class="foot">
+            <p>Copyright © 2024 Roman Loktionov</p>
+        </div>
+    </section>
+</div>
+<div></div>
+</body>
+</html>

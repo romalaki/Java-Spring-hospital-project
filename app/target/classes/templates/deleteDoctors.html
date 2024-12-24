@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <link rel="stylesheet" href="css\show.css">
+    <title>Document</title>
+</head>
+<body>
+<div class="table-container">
+    <table >
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Group Name</th>
+            <th>Type</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+
+            <div th:each="el: ${doctors}">
+                <tr>
+                <td th:text="${el.id}"></td>
+                <td th:text="${el.name}"></td>
+                <td th:text="${el.specialty}"></td>
+                <td th:text="${el.hospitalId}"></td>
+                <td><div class="card" >
+                    <form th:action="'/deleteDoctors/' + ${el.id}" method="post">
+                    <button class="">Удалить</button>
+                    </form>
+                </div></td>
+                 </tr>
+            </div>
+
+        </tbody>
+    </table>
+</div>
+<div class="footer">
+    <div class="card">
+        <a data-th-href="@{/}">Back</a>
+    </div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</body>
+</html>

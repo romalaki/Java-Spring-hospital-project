@@ -22,6 +22,7 @@ public class ChangeHospital {
         docR.getConn();
         Hospital d = docR.gethospital(id);
         d.setName(hospital_name);
+        System.out.println();
         d.setBase_year(base_year);
         docR.change_hospital(d);
         return "redirect:/showHospital";

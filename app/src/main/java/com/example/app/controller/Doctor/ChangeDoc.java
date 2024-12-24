@@ -20,7 +20,7 @@ public class ChangeDoc {
     @PostMapping("/docChange/{id}")
     public String changeDoc(@PathVariable(value = "id") int id, @RequestParam String doctor_name,
                          @RequestParam int group_name, @RequestParam String doctor_type, Model model) {
-        docR.getDoc(id);
+        //docR.getDoc(id);  Мб удалить
         docR.getConn();
         Doctor d = docR.getDoc(id);
         d.setName(doctor_name);

@@ -20,7 +20,6 @@ public class AddDoctorController {
 
     @PostMapping("/addDoctor")
     public String addDoc(@RequestParam String doctor_name,@RequestParam int group_name,@RequestParam String doctor_type, Model model) {
-        System.out.println(group_name);
         Doctor doc = new Doctor(doctor_name,doctor_type,group_name);
         docR.getConn();
         docR.addDoctor(doc);

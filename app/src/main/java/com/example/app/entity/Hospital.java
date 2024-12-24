@@ -1,35 +1,31 @@
 package com.example.app.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
-@Entity
 public class Hospital {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String name;
-    private String specialty;
-    private int hospitalId;
+    private int id=0;
+    private String name;;
+    private int base_year;
 
     public Hospital() {
     }
 
-    public Hospital(String name, String specialty, int hospitalId) {
-        super();
+    public Hospital(String name, int base_year) {
         this.name = name;
-        this.specialty = specialty;
-        this.hospitalId = hospitalId;
+        this.base_year = base_year;
     }
 
-    public Long getId() {
+    public Hospital(int id,String name, int base_year) {
+        this.id = id;
+        this.name = name;
+        this.base_year = base_year;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -41,20 +37,12 @@ public class Hospital {
         this.name = name;
     }
 
-    public String getSpecialty() {
-        return specialty;
+    public int getBase_year() {
+        return base_year;
     }
 
-    public void setSpecialty(String specialty) {
-        this.specialty = specialty;
-    }
-
-    public int getHospitalId() {
-        return hospitalId;
-    }
-
-    public void setHospitalId(int hospitalId) {
-        this.hospitalId = hospitalId;
+    public void setBase_year(int base_year) {
+        this.base_year = base_year;
     }
 }
 

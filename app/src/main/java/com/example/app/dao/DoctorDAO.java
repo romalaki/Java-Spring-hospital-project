@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface DoctorDAO {
 
-    public void delete_user(Doctor us);
-    public void change_user(int id,String name, int hospital_id, String specialty);
-    public Doctor getUser(int id);
-    public List<Doctor> getUsers();
+    public void delete_doctor(int id);
+    public void change_doctor(Doctor d);
+    public Doctor getDoc(int id);
+    public Iterable<Doctor> getDoctors();
 
-    public void createUser(String name, int hospital_id, String specialty);
+    public void addDoctor(Doctor name);
 
 }

@@ -1,8 +1,7 @@
 package com.example.app.controller.Doctor;
 
+import com.example.app.dao.DoctorRealization;
 import com.example.app.entity.Doctor;
-import com.example.app.repo.DoctorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,28 +14,29 @@ import java.util.Optional;
 
 @Controller
 public class ChangeDoc {
-    @Autowired
-    DoctorRepository doctorRepository;
+
+    DoctorRealization docR = new DoctorRealization();
 
     @PostMapping("/docChange/{id}")
-    public String changeDoc(@PathVariable(value = "id") long id, @RequestParam String doctor_name,
+    public String changeDoc(@PathVariable(value = "id") int id, @RequestParam String doctor_name,
                          @RequestParam int group_name, @RequestParam String doctor_type, Model model) {
-        Doctor d= doctorRepository.findById(id).orElse(null);
+        docR.getDoc(id);
+        docR.getConn();
+        Doctor d = docR.getDoc(id);
         d.setName(doctor_name);
         d.setHospitalId(group_name);
         d.setSpecialty(doctor_type);
-        doctorRepository.save(d);
+        docR.change_doctor(d);
         return "redirect:/showDoctors";
     }
 
     @GetMapping("/docChange/{id}")
-    public String ShowDoc(@PathVariable(value = "id") long id, Model model) {
-        if(doctorRepository.findById(id).isEmpty())
+    public String ShowDoc(@PathVariable(value = "id") int id, Model model) {
+        docR.getConn();
+        Doctor d = docR.getDoc(id);
+        if(d == null)
             return "redirect:/showDoctors";
-        Optional<Doctor> d =doctorRepository.findById(id);
-        ArrayList<Doctor> doctors = new ArrayList<>();
-        d.ifPresent(doctors::add);
-        model.addAttribute("doctor",doctors.get(0));
+        model.addAttribute("doctor",d);
         return "docChange";
     }
 

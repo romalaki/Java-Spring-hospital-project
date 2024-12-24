@@ -1,16 +1,10 @@
 package com.example.app.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
-@Entity
 public class Doctor {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+
+    private int id =0;
     private String name;
     private String specialty;
     private int hospitalId;
@@ -23,12 +17,19 @@ public class Doctor {
         this.specialty = specialty;
         this.hospitalId = hospitalId;
     }
+    public Doctor(int id,String name, String specialty, int hospitalId) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.specialty = specialty;
+        this.hospitalId = hospitalId;
+    }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

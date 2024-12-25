@@ -15,7 +15,6 @@ public class ShowDoctor {
 
     @GetMapping("/showDoctors")
     public String ViewDoc(Model model) {
-        docR.getConn();
         Iterable<Doctor> d = docR.getDoctors();         //МОЖЕТ БЫТЬ ОШИБКА
         model.addAttribute("doctors",d);
         return "showDoctors";
@@ -23,7 +22,6 @@ public class ShowDoctor {
 
     @GetMapping("/showDoctorsByHospital")
     public String ViewStats(Model model) {
-        docR.getConn();
         String a = docR.longestName();
         String b = docR.popularHospital();
         String c = docR.popularProfession();
@@ -36,7 +34,6 @@ public class ShowDoctor {
 
     @GetMapping("/docView")
     public String show(Model model) {
-        docR.getConn();
         Iterable<Doctor> d = docR.getDoctors();         //МОЖЕТ БЫТЬ ОШИБКА
         model.addAttribute("doctors",d);
         return "docView";

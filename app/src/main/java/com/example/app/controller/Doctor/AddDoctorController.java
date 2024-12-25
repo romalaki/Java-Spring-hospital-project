@@ -25,7 +25,6 @@ public class AddDoctorController {
         if(!doc.DoctorValidation(group_name,doctor_name))
             return "redirect:/addDoctor";
         try {
-            docR.getConn();
             docR.addDoctor(doc);
         }catch (Exception e){
             return "redirect:/";

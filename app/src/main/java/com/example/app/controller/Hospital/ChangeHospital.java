@@ -19,26 +19,15 @@ public class ChangeHospital {
     @PostMapping("/hosChange/{id}")
     public String changeDoc(@PathVariable(value = "id") int id, @RequestParam String hospital_name,
                          @RequestParam int base_year, Model model) {
-        try {
-            docR.getConn();
-            Hospital d = docR.gethospital(id);
-
-            if(!d.HospitalValidation(base_year,hospital_name))
-                return "redirect:/hosChange/{id}";
-
-            d.setName(hospital_name);
-            System.out.println();
-            d.setBase_year(base_year);
-            docR.change_hospital(d);
-        }catch (Exception e){
-            return "redirect:/showHospital";
-        }
+        Hospital d = docR.gethospital(id);
+        d.setName(hospital_name);
+        d.setBase_year(base_year);
+        docR.change_hospital(d);
         return "redirect:/showHospital";
     }
 
     @GetMapping("/hosChange/{id}")
     public String ShowDoc(@PathVariable(value = "id") int id, Model model) {
-        docR.getConn();
         Hospital d = docR.gethospital(id);
         if(d == null)
             return "redirect:/showHospital";

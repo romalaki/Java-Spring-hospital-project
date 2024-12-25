@@ -13,7 +13,6 @@ public class ShowHospital {
 
     @GetMapping("/showHospital")
     public String ViewDoc(Model model) {
-        docR.getConn();
         Iterable<Hospital> d = docR.gethospital();         //МОЖЕТ БЫТЬ ОШИБКА
         model.addAttribute("hospitals",d);
         return "showHospital";
@@ -21,7 +20,6 @@ public class ShowHospital {
 
     @GetMapping("/hosView")
     public String view(Model model) {
-        docR.getConn();
         Iterable<Hospital> d = docR.gethospital();         //МОЖЕТ БЫТЬ ОШИБКА
         model.addAttribute("hospitals",d);
         return "hosView";

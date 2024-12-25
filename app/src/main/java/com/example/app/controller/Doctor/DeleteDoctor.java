@@ -21,7 +21,6 @@ public class DeleteDoctor {
     @GetMapping("/deleteDoctors")
     public String deleteDocView(Model model) {
 
-        docR.getConn();
         Iterable<Doctor> d = docR.getDoctors();         //МОЖЕТ БЫТЬ ОШИБКА
         model.addAttribute("doctors",d);
 
@@ -31,7 +30,6 @@ public class DeleteDoctor {
     @PostMapping("/deleteDoctors/{id}")
     public String deleteDoc(@PathVariable(value = "id") int id, Model model) {
         try {
-            docR.getConn();
             Doctor d = docR.getDoc(id);
             if (d == null)
                 return "redirect:/deleteDoctors";

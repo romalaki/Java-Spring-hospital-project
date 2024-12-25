@@ -22,7 +22,6 @@ public class ChangeDoc {
                          @RequestParam int group_name, @RequestParam String doctor_type, Model model) {
         //docR.getDoc(id);  Мб удалить
         try {
-            docR.getConn();
             Doctor d = docR.getDoc(id);
             if (!d.DoctorValidation(group_name, doctor_name))
                 return "redirect:/docChange/{id}";
@@ -39,7 +38,6 @@ public class ChangeDoc {
     @GetMapping("/docChange/{id}")
     public String ShowDoc(@PathVariable(value = "id") int id, Model model) {
         try {
-            docR.getConn();
             Doctor d = docR.getDoc(id);
             if (d == null)
                 return "redirect:/showDoctors";

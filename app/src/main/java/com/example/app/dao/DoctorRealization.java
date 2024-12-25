@@ -58,7 +58,7 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
 
     @Override
     public Doctor getDoc(int id) {
-        Doctor us = new Doctor();
+        Doctor us = null;
         try {
             String select = "SELECT * FROM pz5.doctor WHERE id = ?;";
             PreparedStatement ps = getConn().prepareStatement(select);
@@ -67,7 +67,7 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
             ResultSet rs = ps.executeQuery();
             if(!rs.next())
                 return null;
-
+            us = new Doctor();
             us.setSpecialty(rs.getString(4));
             us.setName(rs.getString(3));
             us.setId(rs.getInt(1));
@@ -86,7 +86,7 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
     }
 
     @Override
-    public Iterable<Doctor> getDoctors() {
+    public List<Doctor> getDoctors() {
         List<Doctor> ds = new ArrayList<Doctor>();
         try {
             String select = "SELECT * FROM pz5.doctor;";
@@ -109,6 +109,84 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
             }catch(SQLException e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    @Override
+    public List<Doctor> sortedDoctors() {  //Не придумал применение
+        List<Doctor> ds = new ArrayList<Doctor>();
+        try {
+            String select = "SELECT * FROM pz5.doctor ORDER BY hospital_id;";
+            PreparedStatement ps = getConn().prepareStatement(select);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                Doctor us = new Doctor();
+                us.setSpecialty(rs.getString(4));
+                us.setName(rs.getString(3));
+                us.setId(rs.getInt(1));
+                us.setHospitalId(rs.getInt(2));
+                ds.add(us);
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }finally{
+            try {
+                conn.close();
+                return ds;
+            }catch(SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    @Override
+    public String longestName() {
+        String s = "";
+        try {
+            String st = "SELECT name FROM pz5.doctor ORDER BY CHAR_LENGTH(name) DESC LIMIT 1;";
+            PreparedStatement ps = getConn().prepareStatement(st);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next())
+                s = rs.getString(1);
+
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }finally {
+            return s;
+        }
+    }
+
+    @Override
+    public String popularHospital() {
+        String s = "";
+        try {
+            String st = "SELECT  h.name AS hospital_name, COUNT(d.id) AS doctor_count FROM pz5.doctor d JOIN pz5.hospital h ON d.hospital_id = h.id GROUP BY h.name ORDER BY doctor_count DESC LIMIT 1;";
+            PreparedStatement ps = getConn().prepareStatement(st);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                s = rs.getString(1);
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }finally {
+            return s;
+        }
+    }
+
+    @Override
+    public String popularProfession() {
+        String s = "";
+        try {
+            String st = "SELECT specialty, COUNT(*) AS doctor_count FROM pz5.doctor GROUP BY specialty ORDER BY doctor_count DESC LIMIT 1;";
+            PreparedStatement ps = getConn().prepareStatement(st);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                s = rs.getString(1);
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }finally {
+            return s;
         }
     }
 

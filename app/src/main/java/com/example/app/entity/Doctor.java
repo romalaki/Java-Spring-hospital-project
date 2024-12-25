@@ -1,6 +1,8 @@
 package com.example.app.entity;
 
 
+import com.example.app.dao.HospitalRealization;
+
 public class Doctor {
 
 
@@ -23,6 +25,16 @@ public class Doctor {
         this.name = name;
         this.specialty = specialty;
         this.hospitalId = hospitalId;
+    }
+
+    public Boolean DoctorValidation(int id,String name) {
+        if(name.trim().equals(""))
+            return false;
+        HospitalRealization hospitalR = new HospitalRealization();
+        hospitalR.getConn();
+        if(hospitalR.gethospital(id)==null)
+            return false;
+        return true;
     }
 
     public int getId() {

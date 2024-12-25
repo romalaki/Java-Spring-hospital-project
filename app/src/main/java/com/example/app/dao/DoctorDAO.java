@@ -9,8 +9,14 @@ public interface DoctorDAO {
 
     public void delete_doctor(int id);
     public void change_doctor(Doctor d);
+
     public Doctor getDoc(int id);
-    public Iterable<Doctor> getDoctors();
+    public List<Doctor> getDoctors();
+    public List<Doctor> sortedDoctors();
+
+    public String longestName();
+    public String popularProfession();
+    public String popularHospital();
 
     public void addDoctor(Doctor name);
 

@@ -19,4 +19,12 @@ public class ShowHospital {
         return "showHospital";
     }
 
+    @GetMapping("/hosView")
+    public String view(Model model) {
+        docR.getConn();
+        Iterable<Hospital> d = docR.gethospital();         //МОЖЕТ БЫТЬ ОШИБКА
+        model.addAttribute("hospitals",d);
+        return "hosView";
+    }
+
 }

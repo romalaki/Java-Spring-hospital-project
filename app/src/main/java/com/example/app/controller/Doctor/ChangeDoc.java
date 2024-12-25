@@ -21,22 +21,32 @@ public class ChangeDoc {
     public String changeDoc(@PathVariable(value = "id") int id, @RequestParam String doctor_name,
                          @RequestParam int group_name, @RequestParam String doctor_type, Model model) {
         //docR.getDoc(id);  Мб удалить
-        docR.getConn();
-        Doctor d = docR.getDoc(id);
-        d.setName(doctor_name);
-        d.setHospitalId(group_name);
-        d.setSpecialty(doctor_type);
-        docR.change_doctor(d);
+        try {
+            docR.getConn();
+            Doctor d = docR.getDoc(id);
+            if (!d.DoctorValidation(group_name, doctor_name))
+                return "redirect:/docChange/{id}";
+            d.setName(doctor_name);
+            d.setHospitalId(group_name);
+            d.setSpecialty(doctor_type);
+            docR.change_doctor(d);
+        }catch (Exception e){
+            return "redirect:/";
+        }
         return "redirect:/showDoctors";
     }
 
     @GetMapping("/docChange/{id}")
     public String ShowDoc(@PathVariable(value = "id") int id, Model model) {
-        docR.getConn();
-        Doctor d = docR.getDoc(id);
-        if(d == null)
-            return "redirect:/showDoctors";
-        model.addAttribute("doctor",d);
+        try {
+            docR.getConn();
+            Doctor d = docR.getDoc(id);
+            if (d == null)
+                return "redirect:/showDoctors";
+            model.addAttribute("doctor", d);
+        }catch (Exception e){
+            return "redirect:/";
+        }
         return "docChange";
     }
 

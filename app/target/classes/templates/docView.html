@@ -14,33 +14,27 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Group Name</th>
-            <th>Edit</th>
+            <th>Type</th>
+            <th>Hospital Id</th>
         </tr>
         </thead>
         <tbody>
 
-            <div th:each="el: ${hospitals}">
-                <tr>
+        <div th:each="el: ${doctors}">
+            <tr>
                 <td th:text="${el.id}"></td>
                 <td th:text="${el.name}"></td>
-                <td th:text="${el.base_year}"></td>
-                <td><div class="card">
-                    <a th:href="'/hosChange/' + ${el.id}">Изменить</a>
-                </div></td>
-                 </tr>
-            </div>
+                <td th:text="${el.specialty}"></td>
+                <td th:text="${el.hospitalId}"></td>
+            </tr>
+        </div>
 
         </tbody>
     </table>
 </div>
 <div class="footer">
     <div class="card">
-        <a href="/">
-            <button type="button" class="btn btn-sm btn-outline-secondary" >
-                Back
-            </button>
-        </a>
+        <a data-th-href="@{/}">Back</a>
     </div>
 </div>
 </div>

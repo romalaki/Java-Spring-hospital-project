@@ -15,21 +15,16 @@
             <th>ID</th>
             <th>Name</th>
             <th>Group Name</th>
-            <th>Edit</th>
         </tr>
         </thead>
         <tbody>
 
-            <div th:each="el: ${hospitals}">
-                <tr>
+        <div th:each="el: ${hospitals}">
+            <tr>
                 <td th:text="${el.id}"></td>
                 <td th:text="${el.name}"></td>
                 <td th:text="${el.base_year}"></td>
-                <td><div class="card">
-                    <a th:href="'/hosChange/' + ${el.id}">Изменить</a>
-                </div></td>
-                 </tr>
-            </div>
+        </div>
 
         </tbody>
     </table>

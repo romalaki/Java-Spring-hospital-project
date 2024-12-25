@@ -1,6 +1,5 @@
 package com.example.app.dao;
 
-import com.example.app.entity.Doctor;
 import com.example.app.entity.Hospital;
 
 import java.sql.Connection;
@@ -56,7 +55,7 @@ public class HospitalRealization extends BaseDAO implements HospitalDAO {
 
     @Override
     public Hospital gethospital(int id) {
-        Hospital us = new Hospital();
+        Hospital us = null;
         try {
             String select = "SELECT * FROM pz5.hospital WHERE id = ?;";
             PreparedStatement ps = getConn().prepareStatement(select);
@@ -65,7 +64,7 @@ public class HospitalRealization extends BaseDAO implements HospitalDAO {
             ResultSet rs = ps.executeQuery();
             if(!rs.next())
                 return null;
-
+            us = new Hospital();
             us.setId(rs.getInt(1));
             us.setName(rs.getString(2));
             us.setBase_year(rs.getInt(3));
@@ -83,7 +82,7 @@ public class HospitalRealization extends BaseDAO implements HospitalDAO {
     }
 
     @Override
-    public Iterable<Hospital> gethospital() {
+    public List<Hospital> gethospital() {
         List<Hospital> ds = new ArrayList<Hospital>();
         try {
             String select = "SELECT * FROM pz5.hospital;";

@@ -21,6 +21,12 @@ public class Hospital {
         this.base_year = base_year;
     }
 
+    public Boolean HospitalValidation(int year,String name) {
+        if(name.trim().equals("") || year<=0)
+            return false;
+        return true;
+    }
+
     public int getId() {
         return id;
     }

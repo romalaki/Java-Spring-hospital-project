@@ -27,11 +27,15 @@ public class DeleteHospital {
 
     @PostMapping("/deleteHospitals/{id}")
     public String deleteDoc(@PathVariable(value = "id") int id, Model model) {
-        docR.getConn();
-        Hospital d = docR.gethospital(id);
-        if(d==null)
-            return "redirect:/deleteHospitals";
-        docR.delete_hospital(id);
+        try {
+            docR.getConn();
+            Hospital d = docR.gethospital(id);
+            if(d==null)
+                return "redirect:/deleteHospitals";
+            docR.delete_hospital(id);
+        }catch (Exception e){
+            return "redirect:/";
+        }
         return "redirect:/deleteHospitals";
     }
 }

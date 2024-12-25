@@ -21,10 +21,16 @@ public class AddHospitalController {
     }
 
     @PostMapping("/addHospital")
-    public String addDoc(@RequestParam String h_name,@RequestParam int h_date, Model model) {
+    public String addHos(@RequestParam String h_name,@RequestParam int h_date, Model model) {
         Hospital doc = new Hospital(h_name,h_date);
-        docR.getConn();
-        docR.addhospital(doc);
-        return "redirect:/showHospital";
+        if(!doc.HospitalValidation(h_date,h_name))
+            return "redirect:/addHospital";
+        try {
+            docR.getConn();
+            docR.addhospital(doc);
+        }catch (Exception e){
+            return "redirect:/";
+        }
+        return "redirect:/hosView";
     }
 }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <link rel="stylesheet" href="css\add.css">
+    <title>Document</title>
+</head>
+<body>
+<div class="wrapper">
+    <div class="form-container">
+        <h2>Statistics</h2>
+        <form action="/addHospital">
+            <div class="form-group">
+                <label >Most popular hospital</label>
+                <p th:text="${popular_h}"></p>
+            </div>
+            <div class="form-group">
+                <label >Most popular profession</label>
+                <p th:text="${popular_p}"></p>
+            </div>
+            <div class="form-group">
+                <label >Longest full name of doctor</label>
+                <p th:text="${name}"></p>
+            </div>
+        </form>
+    </div>
+    <div class="footer">
+        <div class="card">
+            <a href="/">
+                <button type="button" class="btn btn-sm btn-outline-secondary" >
+                    Back
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -16,8 +16,12 @@ public class HospitalRealization extends BaseDAO implements HospitalDAO {
     public void delete_hospital(int id) {
         try {
             Connection conn = getConn();
+            DoctorRealization dr = new DoctorRealization();
+            List d =dr.filterDoctors(null,String.valueOf(id),null);
+            if(!d.isEmpty())
+                return;
             String select = "DELETE FROM pz5.hospital WHERE id = ?;";
-            PreparedStatement ps = getConn().prepareStatement(select);
+            PreparedStatement ps = conn.prepareStatement(select);
             ps.setInt(1,id);
             ps.executeUpdate();
 
@@ -38,7 +42,7 @@ public class HospitalRealization extends BaseDAO implements HospitalDAO {
         try {
             Connection conn = getConn();
             String select = "UPDATE pz5.hospital SET name = ?, base_year = ? WHERE id = ?;";
-            PreparedStatement ps = getConn().prepareStatement(select);
+            PreparedStatement ps = conn.prepareStatement(select);
 
             ps.setString(1,d.getName());
             ps.setInt(2,d.getBase_year());
@@ -63,7 +67,7 @@ public class HospitalRealization extends BaseDAO implements HospitalDAO {
         try {
             Connection conn = getConn();
             String select = "SELECT * FROM pz5.hospital WHERE id = ?;";
-            PreparedStatement ps = getConn().prepareStatement(select);
+            PreparedStatement ps = conn.prepareStatement(select);
             ps.setInt(1,id);
 
             ResultSet rs = ps.executeQuery();
@@ -94,7 +98,7 @@ public class HospitalRealization extends BaseDAO implements HospitalDAO {
         try {
             Connection conn = getConn();
             String select = "SELECT * FROM pz5.hospital;";
-            PreparedStatement ps = getConn().prepareStatement(select);
+            PreparedStatement ps = conn.prepareStatement(select);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Hospital us = gethospital(rs.getInt(1));
@@ -119,7 +123,7 @@ public class HospitalRealization extends BaseDAO implements HospitalDAO {
         try{
             Connection conn = getConn();
             String insert = "INSERT INTO pz5.hospital(name,base_year) VALUES (?,?);";
-            PreparedStatement ps = getConn().prepareStatement(insert);
+            PreparedStatement ps = conn.prepareStatement(insert);
 
             ps.setString(1,h.getName());
             ps.setInt(2,h.getBase_year());

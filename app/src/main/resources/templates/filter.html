@@ -38,20 +38,20 @@
             <table>
                 <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>#</th>
                     <th>Name</th>
                     <th>Group Name</th>
-                    <th>Hospital ID</th>
+                    <th>Hospital</th>
                 </tr>
                 </thead>
                 <tbody>
 
                 <div th:each="el: ${doctors}">
                     <tr>
-                        <td th:text="${el.id}"></td>
+                        <td th:text="${elStat.count}"></td>
                         <td th:text="${el.name}"></td>
                         <td th:text="${el.specialty}"></td>
-                        <td th:text="${el.hospitalId}"></td>
+                        <td th:text="${el.hospitalName}"></td>
                 </div>
 
                 </tbody>

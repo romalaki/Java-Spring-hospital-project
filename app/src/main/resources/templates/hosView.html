@@ -12,26 +12,19 @@
     <table>
         <thead>
         <tr>
-            <th>№</th>
+            <th>ID</th>
             <th>Name</th>
-            <th>Type</th>
-            <th>Hospital Name</th>
-            <th>Edit</th>
+            <th>Date of foundation</th>
         </tr>
         </thead>
         <tbody>
 
-            <div th:each="el: ${doctors}">
-                <tr>
+        <div th:each="el: ${hospitals}">
+            <tr>
                 <td th:text="${el.id}"></td>
-                <td th:text="${el.getName()}"></td>
-                <td th:text="${el.specialty}"></td>
-                <td th:text="${el.hospitalName}"></td>
-                <td><div class="card">
-                    <a th:href="'/docChange/' + ${el.id}">Изменить</a>
-                </div></td>
-                 </tr>
-            </div>
+                <td th:text="${el.name}"></td>
+                <td th:text="${el.base_year}"></td>
+        </div>
 
         </tbody>
     </table>

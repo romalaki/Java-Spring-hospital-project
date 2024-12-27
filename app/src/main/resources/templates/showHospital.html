@@ -14,21 +14,19 @@
         <tr>
             <th>№</th>
             <th>Name</th>
-            <th>Type</th>
-            <th>Hospital Name</th>
+            <th>Date of foundation</th>
             <th>Edit</th>
         </tr>
         </thead>
         <tbody>
 
-            <div th:each="el: ${doctors}">
+            <div th:each="el: ${hospitals}">
                 <tr>
-                <td th:text="${el.id}"></td>
-                <td th:text="${el.getName()}"></td>
-                <td th:text="${el.specialty}"></td>
-                <td th:text="${el.hospitalName}"></td>
+                <td th:text="${elStat.count}"></td>
+                <td th:text="${el.name}"></td>
+                <td th:text="${el.base_year}"></td>
                 <td><div class="card">
-                    <a th:href="'/docChange/' + ${el.id}">Изменить</a>
+                    <a th:href="'/hosChange/' + ${el.id}">Изменить</a>
                 </div></td>
                  </tr>
             </div>

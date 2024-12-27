@@ -15,7 +15,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Group Name</th>
-            <th>Type</th>
+            <th>Hospital</th>
             <th>Delete</th>
         </tr>
         </thead>
@@ -26,7 +26,7 @@
                 <td th:text="${el.id}"></td>
                 <td th:text="${el.name}"></td>
                 <td th:text="${el.specialty}"></td>
-                <td th:text="${el.hospitalId}"></td>
+                <td th:text="${el.hospitalName}"></td>
                 <td><div class="card" >
                     <form th:action="'/deleteDoctors/' + ${el.id}" method="post">
                     <button class="">Удалить</button>

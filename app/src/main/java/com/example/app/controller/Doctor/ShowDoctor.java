@@ -62,7 +62,6 @@ public class ShowDoctor {
         List<Hospital>h = hosR.gethospital();
         model.addAttribute("doctors",d);
         model.addAttribute("hospitals",h);
-        System.out.println(h.size());
         return "filter";
     }
 }

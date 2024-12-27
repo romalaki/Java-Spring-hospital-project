@@ -14,7 +14,7 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
         try{
             Connection conn = getConn();
             String insert = "INSERT INTO pz5.doctor(name,hospital_id,specialty) VALUES (?,?,?);";
-            PreparedStatement ps = getConn().prepareStatement(insert);
+            PreparedStatement ps = conn.prepareStatement(insert);
 
             ps.setString(1,d.getName());
             ps.setInt(2,d.getHospitalId());
@@ -40,7 +40,7 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
         try {
             Connection conn = getConn();
             String select = "UPDATE pz5.doctor SET name = ?, hospital_id = ?, specialty = ? WHERE id = ?;";
-            PreparedStatement ps = getConn().prepareStatement(select);
+            PreparedStatement ps = conn.prepareStatement(select);
 
             ps.setString(1,d.getName());
             ps.setInt(2,d.getHospitalId());
@@ -67,7 +67,7 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
             Connection conn = getConn();
             String select = "SELECT doctor.id, doctor.hospital_id,doctor.name, doctor.specialty, hospital.name AS hospital_name FROM doctor " +
                     "JOIN hospital ON doctor.hospital_id = hospital.id WHERE doctor.id = ?;";
-            PreparedStatement ps = getConn().prepareStatement(select);
+            PreparedStatement ps = conn.prepareStatement(select);
             ps.setInt(1,id);
 
             ResultSet rs = ps.executeQuery();
@@ -101,7 +101,7 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
             Connection conn = getConn();
             String select = "SELECT doctor.id, doctor.name, doctor.specialty, doctor.hospital_id,hospital.name AS hospital_name " +
                     "FROM pz5.doctor JOIN hospital ON doctor.hospital_id = hospital.id;";
-            PreparedStatement ps = getConn().prepareStatement(select);
+            PreparedStatement ps = conn.prepareStatement(select);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Doctor us = new Doctor();
@@ -133,7 +133,7 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
             Connection conn = getConn();
             String select = "SELECT doctor.id, doctor.name, doctor.specialty, hospital.name AS hospital_name FROM pz5.doctor " +
                     "JOIN hospital ON doctor.hospital_id = hospital.id WHERE hospital_id LIKE ? AND doctor.name LIKE ? AND specialty LIKE ?;";
-            PreparedStatement ps = getConn().prepareStatement(select);
+            PreparedStatement ps = conn.prepareStatement(select);
             if(hospital_id != null)
                 ps.setString(1,"%"+hospital_id+"%");
             else
@@ -178,7 +178,7 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
             Connection conn = getConn();
             String select = "SELECT doctor.id, doctor.name, doctor.specialty, hospital.name AS hospital_name,doctor.hospital_id " +
                     "FROM pz5.doctor JOIN hospital ON doctor.hospital_id = hospital.id ORDER BY hospital_id;";
-            PreparedStatement ps = getConn().prepareStatement(select);
+            PreparedStatement ps = conn.prepareStatement(select);
             ResultSet rs = ps.executeQuery();
             int last_hospital_id = -1;
             while(rs.next()) {
@@ -214,7 +214,7 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
         try {
             Connection conn = getConn();
             String st = "SELECT name FROM pz5.doctor ORDER BY CHAR_LENGTH(name) DESC LIMIT 1;";
-            PreparedStatement ps = getConn().prepareStatement(st);
+            PreparedStatement ps = conn.prepareStatement(st);
             ResultSet rs = ps.executeQuery();
             if(rs.next())
                 s = rs.getString(1);
@@ -233,7 +233,7 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
         try {
             Connection conn = getConn();
             String st = "SELECT  h.name AS hospital_name, COUNT(d.id) AS doctor_count FROM pz5.doctor d JOIN pz5.hospital h ON d.hospital_id = h.id GROUP BY h.name ORDER BY doctor_count DESC LIMIT 1;";
-            PreparedStatement ps = getConn().prepareStatement(st);
+            PreparedStatement ps = conn.prepareStatement(st);
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
                 s = rs.getString(1);
@@ -252,7 +252,7 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
         try {
             Connection conn = getConn();
             String st = "SELECT specialty, COUNT(*) AS doctor_count FROM pz5.doctor GROUP BY specialty ORDER BY doctor_count DESC LIMIT 1;";
-            PreparedStatement ps = getConn().prepareStatement(st);
+            PreparedStatement ps = conn.prepareStatement(st);
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
                 s = rs.getString(1);
@@ -270,7 +270,7 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
         try {
             Connection conn = getConn();
             String select = "DELETE FROM pz5.doctor WHERE id = ?;";
-            PreparedStatement ps = getConn().prepareStatement(select);
+            PreparedStatement ps = conn.prepareStatement(select);
             ps.setInt(1,id);
             ps.executeUpdate();
 

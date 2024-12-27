@@ -46,7 +46,10 @@ public class ShowDoctor {
     @GetMapping("/filter")
     public String filt(Model model) {
         List<Doctor> d = docR.getDoctors();
+        HospitalRealization hosR = new HospitalRealization();
+        List<Hospital>h = hosR.gethospital();
         model.addAttribute("doctors",d);
+        model.addAttribute("hospitals",h);
         return "filter";
     }
 
@@ -57,9 +60,9 @@ public class ShowDoctor {
         List<Doctor> d = docR.filterDoctors(doctor_type,group_id,doctor_name);
         HospitalRealization hosR = new HospitalRealization();
         List<Hospital>h = hosR.gethospital();
-        System.out.println(h.size());
         model.addAttribute("doctors",d);
         model.addAttribute("hospitals",h);
+        System.out.println(h.size());
         return "filter";
     }
 }

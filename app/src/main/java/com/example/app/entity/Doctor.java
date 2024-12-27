@@ -10,7 +10,7 @@ public class Doctor {
     private String name;
     private String specialty;
     private int hospitalId;
-    private String HospitalName;
+    private String hospitalName;
 
     public Doctor() {
     }
@@ -33,7 +33,7 @@ public class Doctor {
         this.name = name;
         this.specialty = specialty;
         this.hospitalId = hospitalId;
-        this.HospitalName = HospitalName;
+        this.hospitalName = HospitalName;
     }
     public Doctor(int id,String name, String specialty,String HospitalName) {
         super();
@@ -41,13 +41,13 @@ public class Doctor {
         this.name = name;
         this.specialty = specialty;
         this.hospitalId = hospitalId;
-        this.HospitalName = HospitalName;
+        this.hospitalName = HospitalName;
     }
     public String getHospitalName() {
-        return HospitalName;
+        return hospitalName;
     }
     public void setHospitalName(String hospitalName) {
-        HospitalName = hospitalName;
+        this.hospitalName = hospitalName;
     }
 
     public Boolean DoctorValidation(int id,String name) {

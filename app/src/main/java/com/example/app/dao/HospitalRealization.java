@@ -16,6 +16,10 @@ public class HospitalRealization extends BaseDAO implements HospitalDAO {
     public void delete_hospital(int id) {
         try {
             Connection conn = getConn();
+            DoctorRealization dr = new DoctorRealization();
+            List d =dr.filterDoctors(null,String.valueOf(id),null);
+            if(!d.isEmpty())
+                return;
             String select = "DELETE FROM pz5.hospital WHERE id = ?;";
             PreparedStatement ps = getConn().prepareStatement(select);
             ps.setInt(1,id);

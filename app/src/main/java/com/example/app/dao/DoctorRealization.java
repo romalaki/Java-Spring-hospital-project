@@ -22,11 +22,13 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
             ps.executeUpdate();
 
         }catch (SQLException e){
+            e.printStackTrace();
             throw new RuntimeException(e);
         }finally{
             try {
                 conn.close();
             }catch(SQLException e) {
+                e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }
@@ -46,11 +48,13 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
             ps.setInt(4,d.getId());
             ps.executeUpdate();
         }catch (SQLException e){
+            e.printStackTrace();
             throw new RuntimeException(e);
         }finally{
             try {
                 conn.close();
             }catch(SQLException e) {
+                e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }
@@ -77,12 +81,14 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
             us.setHospitalName(rs.getString(5));
 
         }catch (SQLException e){
+            e.printStackTrace();
             throw new RuntimeException(e);
         }finally{
             try {
                 conn.close();
                 return us;
             }catch(SQLException e) {
+                e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }
@@ -93,24 +99,28 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
         List<Doctor> ds = new ArrayList<Doctor>();
         try {
             Connection conn = getConn();
-            String select = "SELECT * FROM pz5.doctor;";
+            String select = "SELECT doctor.id, doctor.name, doctor.specialty, doctor.hospital_id,hospital.name AS hospital_name " +
+                    "FROM pz5.doctor JOIN hospital ON doctor.hospital_id = hospital.id;";
             PreparedStatement ps = getConn().prepareStatement(select);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Doctor us = new Doctor();
                 us.setId(rs.getInt(1));
-                us.setHospitalId(rs.getInt(2));
-                us.setName(rs.getString(3));
-                us.setSpecialty(rs.getString(4));
+                us.setName(rs.getString(2));
+                us.setSpecialty(rs.getString(3));
+                us.setHospitalId(rs.getInt(4));
+                us.setHospitalName(rs.getString(5));
                 ds.add(us);
             }
         }catch (SQLException e){
+            e.printStackTrace();
             throw new RuntimeException(e);
         }finally{
             try {
                 conn.close();
                 return ds;
             }catch(SQLException e) {
+                e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }
@@ -121,7 +131,8 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
         List<Doctor> ds = new ArrayList<Doctor>();
         try {
             Connection conn = getConn();
-            String select = "SELECT * FROM pz5.doctor WHERE hospital_id LIKE ? AND name LIKE ? AND specialty LIKE ?;";
+            String select = "SELECT doctor.id, doctor.name, doctor.specialty, hospital.name AS hospital_name FROM pz5.doctor " +
+                    "JOIN hospital ON doctor.hospital_id = hospital.id WHERE hospital_id LIKE ? AND doctor.name LIKE ? AND specialty LIKE ?;";
             PreparedStatement ps = getConn().prepareStatement(select);
             if(hospital_id != null)
                 ps.setString(1,"%"+hospital_id+"%");
@@ -140,19 +151,21 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Doctor us = new Doctor();
-                us.setId(rs.getInt(1));
-                us.setHospitalId(rs.getInt(2));
-                us.setName(rs.getString(3));
-                us.setSpecialty(rs.getString(4));
+                us.setName(rs.getString(1));
+                us.setName(rs.getString(2));
+                us.setSpecialty(rs.getString(3));
+                us.setHospitalName(rs.getString(4));
                 ds.add(us);
             }
         }catch (SQLException e){
+            e.printStackTrace();
             throw new RuntimeException(e);
         }finally{
             try {
                 conn.close();
                 return ds;
             }catch(SQLException e) {
+                e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }
@@ -163,29 +176,33 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
         List<List<Doctor>> ds = new ArrayList<List<Doctor>>();
         try {
             Connection conn = getConn();
-            String select = "SELECT * FROM pz5.doctor ORDER BY hospital_id;";
+            String select = "SELECT doctor.id, doctor.name, doctor.specialty, hospital.name AS hospital_name,doctor.hospital_id " +
+                    "FROM pz5.doctor JOIN hospital ON doctor.hospital_id = hospital.id ORDER BY hospital_id;";
             PreparedStatement ps = getConn().prepareStatement(select);
             ResultSet rs = ps.executeQuery();
             int last_hospital_id = -1;
             while(rs.next()) {
-                if(last_hospital_id != rs.getInt(2)) {
-                    last_hospital_id = rs.getInt(2);
+                if(last_hospital_id != rs.getInt(5)) {
+                    last_hospital_id = rs.getInt(5);
                     ds.add(new ArrayList<>());
                 }
                 Doctor us = new Doctor();
                 us.setId(rs.getInt(1));
-                us.setHospitalId(rs.getInt(2));
-                us.setName(rs.getString(3));
-                us.setSpecialty(rs.getString(4));
+                us.setName(rs.getString(2));
+                us.setSpecialty(rs.getString(3));
+                us.setHospitalName(rs.getString(4));
+                us.setHospitalId(rs.getInt(5));
                 ds.get(ds.size()-1).add(us);
             }
         }catch (SQLException e){
+            e.printStackTrace();
             throw new RuntimeException(e);
         }finally{
             try {
                 conn.close();
                 return ds;
             }catch(SQLException e) {
+                e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }
@@ -203,6 +220,7 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
                 s = rs.getString(1);
 
         }catch (SQLException e){
+            e.printStackTrace();
             throw new RuntimeException(e);
         }finally {
             return s;
@@ -221,6 +239,7 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
                 s = rs.getString(1);
             }
         }catch (SQLException e){
+            e.printStackTrace();
             throw new RuntimeException(e);
         }finally {
             return s;
@@ -239,6 +258,7 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
                 s = rs.getString(1);
             }
         }catch (SQLException e){
+            e.printStackTrace();
             throw new RuntimeException(e);
         }finally {
             return s;
@@ -255,6 +275,7 @@ public class DoctorRealization extends BaseDAO implements DoctorDAO {
             ps.executeUpdate();
 
         }catch (SQLException e){
+            e.printStackTrace();
             throw new RuntimeException(e);
         }finally{
             try {

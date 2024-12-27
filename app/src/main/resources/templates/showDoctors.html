@@ -15,7 +15,7 @@
             <th>№</th>
             <th>Name</th>
             <th>Type</th>
-            <th>Hospital Id</th>
+            <th>Hospital Name</th>
             <th>Edit</th>
         </tr>
         </thead>
@@ -23,10 +23,10 @@
 
             <div th:each="el: ${doctors}">
                 <tr>
-                <td th:text="${elStat.count}"></td>
-                <td th:text="${el.name}"></td>
+                <td th:text="${el.id}"></td>
+                <td th:text="${el.getName()}"></td>
                 <td th:text="${el.specialty}"></td>
-                <td th:text="${el.hospitalId}"></td>
+                <td th:text="${el.hospitalName}"></td>
                 <td><div class="card">
                     <a th:href="'/docChange/' + ${el.id}">Изменить</a>
                 </div></td>

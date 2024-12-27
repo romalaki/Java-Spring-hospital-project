@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <link rel="stylesheet" href="/css/add.css">
+    <link rel="stylesheet" href="/css/show.css">
+    <title>Document</title>
+</head>
+<body>
+<div class="table-container">
+    <div class="wrapper">        <div class="form-container">
+        <h2>Add Doctor</h2>
+        <form action="/filter" method="post">
+            <div class="form-group">
+                <label for="doctor-name">Doctor Name</label>
+                <input type="text" id="doctor-name" name="doctor_name" placeholder="Enter doctor name" >
+            </div>
+            <div class="form-group">
+                <label for="group_id">Hospital Name</label>
+                <select id="group_id" name="group_id" >
+                    <option value="" disabled selected>Select type</option>
+                    <div th:each="el: ${hospitals}">
+                        <option th:value="${el.id}" th:text="${el.name}"></option>
+                    </div>
+                </select>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="doctor-type">Doctor Type</label>
+                    <input type="text" id="doctor-type" name="doctor_type" placeholder="Enter doctor type">
+                </div>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Group Name</th>
+                    <th>Hospital ID</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <div th:each="el: ${doctors}">
+                    <tr>
+                        <td th:text="${el.id}"></td>
+                        <td th:text="${el.name}"></td>
+                        <td th:text="${el.specialty}"></td>
+                        <td th:text="${el.hospitalId}"></td>
+                </div>
+
+                </tbody>
+            </table>
+    <div class="footer">
+        <div class="card">
+            <a href="/">
+                <button type="button" class="btn btn-sm btn-outline-secondary" >
+                    Back
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+</div>
+</body>
+</html>

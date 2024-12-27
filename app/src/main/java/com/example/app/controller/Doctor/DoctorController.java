@@ -30,8 +30,10 @@ public class DoctorController {
         }catch (Exception e){
             return "redirect:/";
         }
+        if(h.size()!=0)
+            model.addAttribute("amount_h",h.size());    //Как избежать деления на 0?
+        else model.addAttribute("amount_h",1);
         model.addAttribute("amount_d",d.size());
-        model.addAttribute("amount_h",h.size());
         return "viewAll";
     }
 

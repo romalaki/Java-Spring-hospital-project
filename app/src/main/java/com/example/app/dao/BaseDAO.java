@@ -8,7 +8,7 @@ public class BaseDAO implements DAO{
 
     @Override
     public Connection getConn() {
-        String url = "jdbc:mysql://localhost:3306/person";
+        String url = "jdbc:mysql://localhost:3306/pz5";
         String user = "root";
         String password = "eveeve103";
 

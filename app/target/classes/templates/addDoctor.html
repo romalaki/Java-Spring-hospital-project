@@ -17,16 +17,17 @@
                     <input type="text" id="doctor-name" name="doctor_name" placeholder="Enter doctor name" required>
                 </div>
                 <div class="form-group">
-                    <label for="group-name">Group Name (Hospital)</label>
-                    <input type="text" id="group-name" name="group_name" placeholder="Enter group/hospital name" required>
+                    <label for="group-name">Hospital Name</label>
+                    <select id="group-name" name="group_name" required>
+                        <option value="" disabled selected>Select type</option>
+                        <div th:each="el: ${hospitals}">
+                            <option th:value="${el.id}" th:text="${el.name}"></option>
+                        </div>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="doctor-type">Doctor Type</label>
-                    <select id="doctor-type" name="doctor_type" required>
-                        <option value="" disabled selected>Select type</option>
-                        <option value="family">Family Doctor</option>
-                        <option value="diagnostic">Diagnostic Doctor</option>
-                    </select>
+                    <input type="text" id="doctor-type" name="doctor_type" placeholder="Enter doctor type" required>
                 </div>
                 <button type="submit" class="submit-btn">Submit</button>
             </form>

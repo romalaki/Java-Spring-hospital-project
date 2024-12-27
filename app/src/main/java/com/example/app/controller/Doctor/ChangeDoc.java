@@ -1,7 +1,9 @@
 package com.example.app.controller.Doctor;
 
 import com.example.app.dao.DoctorRealization;
+import com.example.app.dao.HospitalRealization;
 import com.example.app.entity.Doctor;
+import com.example.app.entity.Hospital;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +44,9 @@ public class ChangeDoc {
             if (d == null)
                 return "redirect:/showDoctors";
             model.addAttribute("doctor", d);
+            HospitalRealization hosR = new HospitalRealization();
+            Iterable<Hospital> h = hosR.gethospital();
+            model.addAttribute("hospitals",h);
         }catch (Exception e){
             return "redirect:/";
         }

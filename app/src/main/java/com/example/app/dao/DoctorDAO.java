@@ -12,7 +12,8 @@ public interface DoctorDAO {
 
     public Doctor getDoc(int id);
     public List<Doctor> getDoctors();
-    public List<Doctor> sortedDoctors();
+    public List<Doctor> filterDoctors(String specialty,String hospital_id,String name);
+    public List<List<Doctor>> sortedDoctors();
 
     public String longestName();
     public String popularProfession();

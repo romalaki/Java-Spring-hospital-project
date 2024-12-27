@@ -12,9 +12,9 @@
     <table>
         <thead>
         <tr>
-            <th>ID</th>
+            <th>№</th>
             <th>Name</th>
-            <th>Group Name</th>
+            <th>Date of foundation</th>
             <th>Edit</th>
         </tr>
         </thead>
@@ -22,7 +22,7 @@
 
             <div th:each="el: ${hospitals}">
                 <tr>
-                <td th:text="${el.id}"></td>
+                <td th:text="${elStat.count}"></td>
                 <td th:text="${el.name}"></td>
                 <td th:text="${el.base_year}"></td>
                 <td><div class="card">

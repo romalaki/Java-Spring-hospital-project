@@ -11,17 +11,18 @@ import java.util.List;
 
 public class HospitalRealization extends BaseDAO implements HospitalDAO {
 
-    Connection conn = getConn();
 
     @Override
     public void delete_hospital(int id) {
         try {
+            Connection conn = getConn();
             String select = "DELETE FROM pz5.hospital WHERE id = ?;";
             PreparedStatement ps = getConn().prepareStatement(select);
             ps.setInt(1,id);
             ps.executeUpdate();
 
         }catch (SQLException e){
+            e.printStackTrace();
             throw new RuntimeException(e);
         }finally{
             try {
@@ -35,6 +36,7 @@ public class HospitalRealization extends BaseDAO implements HospitalDAO {
     @Override
     public void change_hospital(Hospital d) {
         try {
+            Connection conn = getConn();
             String select = "UPDATE pz5.hospital SET name = ?, base_year = ? WHERE id = ?;";
             PreparedStatement ps = getConn().prepareStatement(select);
 
@@ -43,11 +45,13 @@ public class HospitalRealization extends BaseDAO implements HospitalDAO {
             ps.setInt(3,d.getId());
             ps.executeUpdate();
         }catch (SQLException e){
+            e.printStackTrace();
             throw new RuntimeException(e);
         }finally{
             try {
                 conn.close();
             }catch(SQLException e) {
+                e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }
@@ -57,6 +61,7 @@ public class HospitalRealization extends BaseDAO implements HospitalDAO {
     public Hospital gethospital(int id) {
         Hospital us = null;
         try {
+            Connection conn = getConn();
             String select = "SELECT * FROM pz5.hospital WHERE id = ?;";
             PreparedStatement ps = getConn().prepareStatement(select);
             ps.setInt(1,id);
@@ -70,12 +75,14 @@ public class HospitalRealization extends BaseDAO implements HospitalDAO {
             us.setBase_year(rs.getInt(3));
 
         }catch (SQLException e){
+            e.printStackTrace();
             throw new RuntimeException(e);
         }finally{
             try {
                 conn.close();
                 return us;
             }catch(SQLException e) {
+                e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }
@@ -85,6 +92,7 @@ public class HospitalRealization extends BaseDAO implements HospitalDAO {
     public List<Hospital> gethospital() {
         List<Hospital> ds = new ArrayList<Hospital>();
         try {
+            Connection conn = getConn();
             String select = "SELECT * FROM pz5.hospital;";
             PreparedStatement ps = getConn().prepareStatement(select);
             ResultSet rs = ps.executeQuery();
@@ -93,12 +101,14 @@ public class HospitalRealization extends BaseDAO implements HospitalDAO {
                 ds.add(us);
             }
         }catch (SQLException e){
+            e.printStackTrace();
             throw new RuntimeException(e);
         }finally{
             try {
                 conn.close();
                 return ds;
             }catch(SQLException e) {
+                e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }
@@ -107,6 +117,7 @@ public class HospitalRealization extends BaseDAO implements HospitalDAO {
     @Override
     public void addhospital(Hospital h) {
         try{
+            Connection conn = getConn();
             String insert = "INSERT INTO pz5.hospital(name,base_year) VALUES (?,?);";
             PreparedStatement ps = getConn().prepareStatement(insert);
 
@@ -115,11 +126,13 @@ public class HospitalRealization extends BaseDAO implements HospitalDAO {
             ps.executeUpdate();
 
         }catch (SQLException e){
+            e.printStackTrace();
             throw new RuntimeException(e);
         }finally{
             try {
                 conn.close();
             }catch(SQLException e) {
+                e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }

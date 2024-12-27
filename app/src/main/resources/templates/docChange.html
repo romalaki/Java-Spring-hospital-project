@@ -21,23 +21,30 @@
                 <input type="text" id="doctor-name" name="doctor_name" th:placeholder="${doctor.getName()}" required>
             </div>
             <div class="form-group">
-                <label for="group-name">Hospital ID</label>
-                <input type="number" id="group-name" name="group_name" th:placeholder="${doctor.getHospitalId()}" required>
+                <label for="group-name">Hospital Name</label>
+                <select id="group-name" name="group_name" required>
+                    <option value="" disabled selected>Select type</option>
+                    <div th:each="el: ${hospitals}">
+                        <option th:value="${el.id}" th:text="${el.name}"></option>
+                    </div>
+                </select>
             </div>
             <div class="form-group">
-                <label for="doctor-type">Doctor Type</label>
-                <select id="doctor-type" name="doctor_type" required>
-                    <option value="" disabled selected>Select type</option>
-                    <option value="family">Orthopedist</option>
-                    <option value="diagnostic">Diagnostician</option>
-                </select>
+                <div class="form-group">
+                    <label for="doctor-type">Doctor Type</label>
+                    <input type="text" id="doctor-type" name="doctor_type" placeholder="Enter doctor type" required>
+                </div>
             </div>
             <button type="submit" class="submit-btn">Submit</button>
         </form>
     </div>
     <div class="footer">
         <div class="card">
-            <a data-th-href="@{/}">Back</a>
+            <a href="/">
+                <button type="button" class="btn btn-sm btn-outline-secondary" >
+                    Back
+                </button>
+            </a>
         </div>
     </div>
 </div>

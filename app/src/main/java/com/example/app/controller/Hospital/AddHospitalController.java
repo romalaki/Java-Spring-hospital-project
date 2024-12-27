@@ -26,7 +26,6 @@ public class AddHospitalController {
         if(!doc.HospitalValidation(h_date,h_name))
             return "redirect:/addHospital";
         try {
-            docR.getConn();
             docR.addhospital(doc);
         }catch (Exception e){
             return "redirect:/";

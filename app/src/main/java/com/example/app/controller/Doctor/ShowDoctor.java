@@ -1,10 +1,14 @@
 package com.example.app.controller.Doctor;
 
 import com.example.app.dao.DoctorRealization;
+import com.example.app.dao.HospitalRealization;
 import com.example.app.entity.Doctor;
+import com.example.app.entity.Hospital;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -15,15 +19,13 @@ public class ShowDoctor {
 
     @GetMapping("/showDoctors")
     public String ViewDoc(Model model) {
-        docR.getConn();
         Iterable<Doctor> d = docR.getDoctors();         //МОЖЕТ БЫТЬ ОШИБКА
         model.addAttribute("doctors",d);
         return "showDoctors";
     }
 
-    @GetMapping("/showDoctorsByHospital")
+    @GetMapping("/stats")
     public String ViewStats(Model model) {
-        docR.getConn();
         String a = docR.longestName();
         String b = docR.popularHospital();
         String c = docR.popularProfession();
@@ -31,15 +33,33 @@ public class ShowDoctor {
         model.addAttribute("popular_h",b);
         model.addAttribute("popular_p",c);
 
-        return "showDoctorsByHospital";
+        return "stats";
     }
 
     @GetMapping("/docView")
     public String show(Model model) {
-        docR.getConn();
-        Iterable<Doctor> d = docR.getDoctors();         //МОЖЕТ БЫТЬ ОШИБКА
+        List<List<Doctor>> d = docR.sortedDoctors();         //МОЖЕТ БЫТЬ ОШИБКА
         model.addAttribute("doctors",d);
         return "docView";
     }
 
+    @GetMapping("/filter")
+    public String filt(Model model) {
+        List<Doctor> d = docR.getDoctors();
+        model.addAttribute("doctors",d);
+        return "filter";
+    }
+
+    @PostMapping("/filter")
+    public String filter(@RequestParam(required = false) String doctor_name,
+                         @RequestParam(required = false) String group_id,
+                         @RequestParam(required = false) String doctor_type,Model model) {
+        List<Doctor> d = docR.filterDoctors(doctor_type,group_id,doctor_name);
+        HospitalRealization hosR = new HospitalRealization();
+        List<Hospital>h = hosR.gethospital();
+        System.out.println(h.size());
+        model.addAttribute("doctors",d);
+        model.addAttribute("hospitals",h);
+        return "filter";
+    }
 }

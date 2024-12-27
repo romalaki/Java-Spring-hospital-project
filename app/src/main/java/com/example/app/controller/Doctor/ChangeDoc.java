@@ -1,7 +1,9 @@
 package com.example.app.controller.Doctor;
 
 import com.example.app.dao.DoctorRealization;
+import com.example.app.dao.HospitalRealization;
 import com.example.app.entity.Doctor;
+import com.example.app.entity.Hospital;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +24,6 @@ public class ChangeDoc {
                          @RequestParam int group_name, @RequestParam String doctor_type, Model model) {
         //docR.getDoc(id);  Мб удалить
         try {
-            docR.getConn();
             Doctor d = docR.getDoc(id);
             if (!d.DoctorValidation(group_name, doctor_name))
                 return "redirect:/docChange/{id}";
@@ -39,11 +40,13 @@ public class ChangeDoc {
     @GetMapping("/docChange/{id}")
     public String ShowDoc(@PathVariable(value = "id") int id, Model model) {
         try {
-            docR.getConn();
             Doctor d = docR.getDoc(id);
             if (d == null)
                 return "redirect:/showDoctors";
             model.addAttribute("doctor", d);
+            HospitalRealization hosR = new HospitalRealization();
+            Iterable<Hospital> h = hosR.gethospital();
+            model.addAttribute("hospitals",h);
         }catch (Exception e){
             return "redirect:/";
         }

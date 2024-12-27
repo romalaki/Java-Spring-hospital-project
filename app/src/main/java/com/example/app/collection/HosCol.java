@@ -16,7 +16,6 @@ public class HosCol {
     public HosCol() {
         hospital = new ArrayList<>();
         try {
-            hospitalR.getConn();
             hospital = hospitalR.gethospital();
         }catch (Exception e){
             e.printStackTrace();
@@ -31,7 +30,6 @@ public class HosCol {
     public void addHospital(Hospital doctor) {
         hospital.add(doctor);
         try {
-            hospitalR.getConn();
             hospitalR.addhospital(doctor);
         }catch (Exception e){
             e.printStackTrace();
@@ -43,7 +41,6 @@ public class HosCol {
         if( id >= 0 && id < hospital.size()){
             hospital.remove(id);
         try {
-            hospitalR.getConn();
             hospitalR.delete_hospital(id);
         }catch (Exception e){
             e.printStackTrace();
@@ -54,7 +51,6 @@ public class HosCol {
         if( id >= 0 && id < hospital.size()){
             hospital.set(id, doctor);
         try {
-            hospitalR.getConn();
             hospitalR.change_hospital(doctor);
         }catch (Exception e){
             e.printStackTrace();
@@ -81,7 +77,6 @@ public class HosCol {
     }
     public void setHospitals() {
         try {
-            hospitalR.getConn();
             hospital = hospitalR.gethospital();
         }catch (Exception e){
             e.printStackTrace();

@@ -10,6 +10,7 @@ public class Doctor {
     private String name;
     private String specialty;
     private int hospitalId;
+    private String HospitalName;
 
     public Doctor() {
     }
@@ -25,6 +26,28 @@ public class Doctor {
         this.name = name;
         this.specialty = specialty;
         this.hospitalId = hospitalId;
+    }
+    public Doctor(int id,String name, String specialty, int hospitalId,String HospitalName) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.specialty = specialty;
+        this.hospitalId = hospitalId;
+        this.HospitalName = HospitalName;
+    }
+    public Doctor(int id,String name, String specialty,String HospitalName) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.specialty = specialty;
+        this.hospitalId = hospitalId;
+        this.HospitalName = HospitalName;
+    }
+    public String getHospitalName() {
+        return HospitalName;
+    }
+    public void setHospitalName(String hospitalName) {
+        HospitalName = hospitalName;
     }
 
     public Boolean DoctorValidation(int id,String name) {

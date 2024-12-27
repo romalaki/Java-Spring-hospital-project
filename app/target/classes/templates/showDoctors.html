@@ -12,7 +12,7 @@
     <table>
         <thead>
         <tr>
-            <th>ID</th>
+            <th>№</th>
             <th>Name</th>
             <th>Type</th>
             <th>Hospital Id</th>
@@ -23,7 +23,7 @@
 
             <div th:each="el: ${doctors}">
                 <tr>
-                <td th:text="${el.id}"></td>
+                <td th:text="${elStat.count}"></td>
                 <td th:text="${el.name}"></td>
                 <td th:text="${el.specialty}"></td>
                 <td th:text="${el.hospitalId}"></td>
@@ -38,7 +38,11 @@
 </div>
 <div class="footer">
     <div class="card">
-        <a data-th-href="@{/}">Back</a>
+        <a href="/">
+            <button type="button" class="btn btn-sm btn-outline-secondary" >
+                Back
+            </button>
+        </a>
     </div>
 </div>
 </div>

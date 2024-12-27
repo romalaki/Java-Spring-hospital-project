@@ -16,7 +16,6 @@ public class DocCol {
     public DocCol() {
         doctors = new ArrayList<>();
         try {
-            docR.getConn();
             doctors = docR.getDoctors();
         }catch (Exception e){
             e.printStackTrace();
@@ -31,7 +30,6 @@ public class DocCol {
     public void addDoctor(Doctor doctor) {
         doctors.add(doctor);
         try {
-            docR.getConn();
             docR.addDoctor(doctor);
         }catch (Exception e){
             e.printStackTrace();
@@ -43,7 +41,6 @@ public class DocCol {
         if( id >= 0 && id < doctors.size()){
         doctors.remove(id);
         try {
-            docR.getConn();
             docR.delete_doctor(id);
         }catch (Exception e){
             e.printStackTrace();
@@ -54,7 +51,6 @@ public class DocCol {
         if( id >= 0 && id < doctors.size()) {
             doctors.set(id, doctor);
             try {
-                docR.getConn();
                 docR.change_doctor(doctor);
             }catch (Exception e){
                 e.printStackTrace();
@@ -83,7 +79,6 @@ public class DocCol {
 
     public void setDoctors() {
         try {
-            docR.getConn();
             doctors = docR.getDoctors();
         }catch (Exception e){
             e.printStackTrace();

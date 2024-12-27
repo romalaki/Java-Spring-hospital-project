@@ -19,7 +19,6 @@ public class DeleteHospital {
 
     @GetMapping("/deleteHospitals")
     public String deleteHosView(Model model) {
-        docR.getConn();
         Iterable<Hospital> d = docR.gethospital();         //МОЖЕТ БЫТЬ ОШИБКА
         model.addAttribute("hospitals",d);
         return "deleteHospitals";
@@ -28,7 +27,6 @@ public class DeleteHospital {
     @PostMapping("/deleteHospitals/{id}")
     public String deleteDoc(@PathVariable(value = "id") int id, Model model) {
         try {
-            docR.getConn();
             Hospital d = docR.gethospital(id);
             if(d==null)
                 return "redirect:/deleteHospitals";
